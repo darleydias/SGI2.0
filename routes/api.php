@@ -69,6 +69,7 @@ Route::get('/grupo/{id}/funcionalidades',[FuncionalidadeController::class,'lista
 Route::get('/funcionalidade/{id}/grupos',[FuncionalidadeController::class,'listaGruposFuncionalidade']);/**  LISTA GRUPOS em que um FUNCIONALIDADE está **/
 Route::delete('/func/grupo',[FuncionalidadeController::class,'excluiFuncGrupo']);
 Route::get('/menu/usuario/{id}',[FuncionalidadeController::class,'montaMenu']);
+Route::post('/menu/usuario/',[FuncionalidadeController::class,'montaMenuEmail']);
 
 
 //  ##################    PERMISSAO    ##################

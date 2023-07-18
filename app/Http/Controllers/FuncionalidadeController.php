@@ -103,12 +103,29 @@ class FuncionalidadeController extends Controller
     }
     /**  MONTA MENU DO USUARIO LOGADO **/
     public function montaMenu($id){
-        // try {
+        try {
             $usu = User::findOrFail($id);
             return $usu->menu();            
-        // }catch (\Exception $e) {
-        //         return "Usuario não encontrado";       
-        // }
+        }catch (\Exception $e) {
+            return "Usuario não encontrado";       
+        }
+    }
+     /**  MONTA MENU DO USUARIO LOGADO **/
+     public function montaMenuEmail(Request $request){
+        try {
+            $usu = User::all()->where('email',$request->email)->first();
+            if(is_null($usu)){
+                return ['msg'=>'Usuário não encontrado'];
+            }else{
+                if(empty($usu->menu())){
+                    return ['msg'=>'Nenhum item de menu para esse usuário'];
+                }else{
+                    return $usu->menu();
+                }
+            }           
+        }catch (\Exception $e) {
+            return "Usuario não encontrado";       
+        }
     }
     
 }
