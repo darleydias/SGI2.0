@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('insEst');
             $table->string('insMun');
             $table->integer('seguimento_id')->unsigned();
+            $table->integer('cliente_ativo')->default(1);
             $table->timestamps();
             
             $table->foreign('seguimento_id')->references('id')->on('seguimento');

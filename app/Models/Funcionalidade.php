@@ -14,6 +14,7 @@ class Funcionalidade extends Model
         'nome',
         'URL',
         'menu',
+        'funcionalidade_id',
         'sistema_id'
     );
 

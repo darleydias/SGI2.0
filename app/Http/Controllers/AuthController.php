@@ -72,4 +72,15 @@ class AuthController extends Controller
         $usuarioLogado = auth()->user();
         return $usuarioLogado->funcionalidades();
     }
+    public function desativa(string $id)
+    {
+        try{
+            $user = User::findOrFail($id);
+            $ativo = ['user_ativo'=>0];
+            $user->update($ativo);
+            return ['msg'=>'Usuário desativado'];
+        }catch (\Exception $e) {
+            return "Usuario não encontrado";       
+        }   
+    }
 }

@@ -14,10 +14,11 @@ class ClienteController extends Controller
     public function index()
     {
         $cliente = Cliente::all();  
+        $cliente->where('cliente_ativo',1);
         if(empty($cliente)){
             return ['msg'=>'Nenhum cliente cadastrado'];
         }else{
-            return $cliente;
+            return [$cliente];
         }
     }
 
@@ -64,6 +65,17 @@ class ClienteController extends Controller
         }   
     }
 
+    public function desativa(string $id)
+    {
+        try{
+            $cliente = Cliente::findOrFail($id);
+            $ativo = ['cliente_ativo'=>0];
+            $cliente->update($ativo);
+            return ['msg'=>'cliente atualizado'];
+        }catch (\Exception $e) {
+            return "cliente não encontrado";       
+        }   
+    }
     /**
      * Remove the specified resource from storage.
      */

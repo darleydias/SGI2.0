@@ -18,6 +18,7 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->integer('grupo_id')->unsigned()->default(0);
+            $table->integer('user_ativo')->default(1);
             $table->rememberToken();
             $table->timestamps();
 

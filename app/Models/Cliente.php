@@ -11,7 +11,7 @@ class Cliente extends Model
     use HasFactory;
     protected $table = 'cliente';
     protected $primarykey = 'id';
-    protected $fillable = ['nome','CNPJ','cel','email','contato','insEst','insMun',"seguimento_id"];
+    protected $fillable = ['nome','CNPJ','cel','email','contato','insEst','insMun',"seguimento_id","cliente_ativo"];
 
     public function sistema(){
         return $this->belongsTo(Seguimento::class);

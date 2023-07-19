@@ -12,6 +12,9 @@ use App\Http\Controllers\SetorController;
 use App\Http\Controllers\SeguimentoController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\PessoaController;
+use App\Http\Controllers\TipoProdutoController;
+use App\Http\Controllers\ProdutoController;
+use App\Http\Controllers\ProducaoController;
 
 
 /*
@@ -41,16 +44,18 @@ Route::post('/grupo',[GrupoController::class,'store']);
 Route::get('/grupo/{id}',[GrupoController::class,'show']);
 Route::put('/grupo/{id}',[GrupoController::class,'update']);
 Route::delete('/grupo/{id}',[GrupoController::class,'destroy']);
+Route::patch('/grupo/{id}',[GrupoController::class,'desativa']);
 Route::get('/grupo/{id}/funcionalidades',[GrupoController::class,'listaFuncGrupo']);/**  CRIA UM REGISTRO NA TABELA DE UM USUARIO EM UM GRUPO **/
 Route::get('/grupo/{id}/usuarios',[GrupoController::class,'listaUsuariosGrupo']); /**  LISTA USUARIOS DE UM GRUPO **/
 
 //  ##################    USUARIO    ##################
 Route::get('/usuario/{id}/grupos',[GrupoController::class,'listaGruposUsuario']);/**  LISTA GRUPOS DE UM USUARIO EM UM GRUPO **/
-
+Route::patch('/usuario/{id}',[AuthController::class,'desativa']);
+Route::get('/usuario',[AuthController::class,'index']);
 //  ##################    INICIO - ROTAS LOGADAS E AUTORIZADAS    ##################
 // Todo sistema que for logar e autorizar deveria apontar para as tabelas daqui, implementar o md abaixo
 Route::group(['middleware'=>['auth:sanctum']],function(){
-    Route::get('/usuario',[AuthController::class,'index'])->middleware(PermissaoMiddleware::class);
+    //Route::get('/usuario',[AuthController::class,'index'])->middleware(PermissaoMiddleware::class);
 });
 //  ##################    FIM - ROTAS LOGADAS E AUTORIZADAS    ##################
 Route::delete('/usuario/grupo',[GrupoController::class,'excluiUsuarioGrupo']);/**  EXCLUI UM REGISTRO NA TABELA DE UM USUARIO EM UM GRUPO **/
@@ -64,6 +69,7 @@ Route::post('/funcionalidade',[FuncionalidadeController::class,'store']);
 Route::get('/funcionalidade/{id}',[FuncionalidadeController::class,'show']);
 Route::put('/funcionalidade/{id}',[FuncionalidadeController::class,'update']);
 Route::delete('/funcionalidade/{id}',[FuncionalidadeController::class,'destroy']);
+Route::patch('/funcionalidade/{id}',[FuncionalidadeController::class,'desativa']);
 Route::post('/funcionalidade/grupo',[FuncionalidadeController::class,'funcionalidadeGrupo']); // Associa funcionalidade a grupo
 Route::get('/grupo/{id}/funcionalidades',[FuncionalidadeController::class,'listaFuncionalidadesGrupo']);/**  LISTA GRUPOS DE UM FUNCIONALIDADES **/
 Route::get('/funcionalidade/{id}/grupos',[FuncionalidadeController::class,'listaGruposFuncionalidade']);/**  LISTA GRUPOS em que um FUNCIONALIDADE está **/
@@ -99,11 +105,11 @@ Route::get('/seguimento/{id}/clientes',[SeguimentoController::class,'clientes'])
 
 // ################### produto  #######################
 
-Route::get('/produto',[AuthController::class,'index']);
-Route::post('/produto',[AuthController::class,'store']);
-Route::get('/produto/{id}',[AuthController::class,'show']);
-Route::put('/produto/{id}',[AuthController::class,'update']);
-Route::delete('/produto/{id}',[AuthController::class,'destroy']);
+Route::get('/produto',[ProdutoController::class,'index']);
+Route::post('/produto',[ProdutoController::class,'store']);
+Route::get('/produto/{id}',[ProdutoController::class,'show']);
+Route::put('/produto/{id}',[ProdutoController::class,'update']);
+Route::delete('/produto/{id}',[ProdutoController::class,'destroy']);
 
 
 // ################### cliente  #######################
@@ -111,16 +117,17 @@ Route::delete('/produto/{id}',[AuthController::class,'destroy']);
 Route::get('/cliente',[ClienteController::class,'index']);
 Route::post('/cliente',[ClienteController::class,'store']);
 Route::get('/cliente/{id}',[ClienteController::class,'show']);
+Route::patch('/cliente/{id}',[ClienteController::class,'desativa']);
 Route::put('/cliente/{id}',[ClienteController::class,'update']);
 Route::delete('/cliente/{id}',[ClienteController::class,'destroy']);
 
 // ################### producao  #######################
 
-Route::get('/producao',[AuthController::class,'index']);
-Route::post('/producao',[AuthController::class,'store']);
-Route::get('/producao/{id}',[AuthController::class,'show']);
-Route::put('/producao/{id}',[AuthController::class,'update']);
-Route::delete('/producao/{id}',[AuthController::class,'destroy']);
+Route::get('/producao',[ProducaoController::class,'index']);
+Route::post('/producao',[ProducaoController::class,'store']);
+Route::get('/producao/{id}',[ProducaoController::class,'show']);
+Route::put('/producao/{id}',[ProducaoController::class,'update']);
+Route::delete('/producao/{id}',[ProducaoController::class,'destroy']);
 
 // ################### setor  #######################
 
@@ -156,11 +163,11 @@ Route::delete('/trabalho/{id}',[AuthController::class,'destroy']);
 
 // ################### tipoProduto  #######################
 
-Route::get('/tipoProduto',[AuthController::class,'index']);
-Route::post('/tipoProduto',[AuthController::class,'store']);
-Route::get('/tipoProduto/{id}',[AuthController::class,'show']);
-Route::put('/tipoProduto/{id}',[AuthController::class,'update']);
-Route::delete('/trabtipoProdutoalho/{id}',[AuthController::class,'destroy']);
+Route::get('/tipoProduto',[TipoProdutoController::class,'index']);
+Route::post('/tipoProduto',[TipoProdutoController::class,'store']);
+Route::get('/tipoProduto/{id}',[TipoProdutoController::class,'show']);
+Route::put('/tipoProduto/{id}',[TipoProdutoController::class,'update']);
+Route::delete('/trabtipoProdutoalho/{id}',[TipoProdutoController::class,'destroy']);
 
 
 
