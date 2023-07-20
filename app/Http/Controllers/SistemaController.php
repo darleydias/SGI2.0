@@ -46,7 +46,17 @@ class SistemaController extends Controller
      */
     public function destroy(string $id)
     {
-        return Sistema::destroy($id);
+        try{
+            try{
+                $sistema = Sistema::findOrFail($id);
+            }catch(\Exception $e){
+                return ['msg'=>'id sistema não existe '];
+            }
+            Sistema::destroy($id);
+            return ['msg'=>'sistema '.$setor->nome.' excluida'];
+        }catch(\Exception $e){    
+            return ['msg'=>'Não foi possível excluir setsistemaor '];
+        }
     }
     public function listaFuncSistema(string $id)
     {

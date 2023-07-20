@@ -20,6 +20,7 @@ return new class extends Migration
             $table->text('obs');
             $table->integer('cliente_id')->unsigned();
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('produto_id')->references('id')->on('produto');
             $table->foreign('cliente_id')->references('id')->on('cliente');

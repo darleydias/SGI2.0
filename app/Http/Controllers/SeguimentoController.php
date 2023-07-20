@@ -63,11 +63,16 @@ class SeguimentoController extends Controller
      */
     public function destroy(string $id)
     {
-        $result = Seguimento::destroy($id);
-        if($result==0){
-            return ['msg'=>'nenhum item removido'];
-        }else{
-            return ['msg'=>'item removido'];
+        try{
+            try{
+                $seguimento = Seguimento::findOrFail($id);
+            }catch(\Exception $e){
+                return ['msg'=>'id seguimento não existe '];
+            }
+            Seguimento::destroy($id);
+            return ['msg'=>'seguimento '.$seguimento->nome.' excluida'];
+        }catch(\Exception $e){    
+            return ['msg'=>'Não foi possível excluir seguimento '];
         }
     }
     /**

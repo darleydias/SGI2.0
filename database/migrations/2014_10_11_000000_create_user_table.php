@@ -21,6 +21,7 @@ return new class extends Migration
             $table->integer('user_ativo')->default(1);
             $table->rememberToken();
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('grupo_id')->references('id')->on('grupo');
         });

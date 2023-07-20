@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('celular', 100)->nullable();
             $table->integer('id_setor')->unsigned();
             $table->timestamps();
+            $table->softDeletes();
             
             $table->foreign('id_setor')->references('id')->on('setor');
         });

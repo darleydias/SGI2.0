@@ -20,6 +20,7 @@ return new class extends Migration
             $table->double('peso');
             $table->string('unid');   
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('tipoProduto_id')->references('id')->on('tipo_produto');
         

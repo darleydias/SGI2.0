@@ -72,16 +72,16 @@ class ProdutoController extends Controller
      */
     public function destroy(string $id)
     {
-        // try{
-        //     try{
-            //     $produto = Produto::findOrFail($id);
-            // }catch(\Exception $e){
-            //     return ['msg'=>'id Produto não existe '];
-            // }
+        try{
+            try{
+                $produto = Produto::findOrFail($id);
+            }catch(\Exception $e){
+                return ['msg'=>'id Produto não existe '];
+            }
             Produto::destroy($id);
-        //     return ['msg'=>'Produto '.$produto->opNum.' excluida'];
-        // }catch(\Exception $e){    
-        //     return ['msg'=>'Não foi possível excluir produto '];
-        // }
+            return ['msg'=>'Produto '.$produto->opNum.' excluida'];
+        }catch(\Exception $e){    
+            return ['msg'=>'Não foi possível excluir produto '];
+        }
     }
 }

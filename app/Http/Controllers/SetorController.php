@@ -63,11 +63,16 @@ class SetorController extends Controller
      */
     public function destroy(string $id)
     {
-        $result = Setor::destroy($id);
-        if($result==0){
-            return ['msg'=>'nenhum item removido'];
-        }else{
-            return ['msg'=>'item removido'];
+        try{
+            try{
+                $setor = Setor::findOrFail($id);
+            }catch(\Exception $e){
+                return ['msg'=>'id setor não existe '];
+            }
+            Setor::destroy($id);
+            return ['msg'=>'setor '.$setor->nome.' excluida'];
+        }catch(\Exception $e){    
+            return ['msg'=>'Não foi possível excluir setor '];
         }
     }
 }

@@ -110,16 +110,5 @@ class GrupoController extends Controller
             return "Grupo não encontrado";       
         }
     }
-    public function desativa(string $id)
-    {
-        try{
-            $grupo = Grupo::findOrFail($id);
-            $ativo = ['grupo_ativo'=>0];
-            $grupo->update($ativo);
-            return ['msg'=>'Grupo desativado'];
-        }catch (\Exception $e) {
-            return "Grupo não encontrado";       
-        }   
-    }
-
+   
 }

@@ -64,6 +64,16 @@ class TipoProdutoController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        try{
+            try{
+                $tipoProduto = TipoProduto::findOrFail($id);
+            }catch(\Exception $e){
+                return ['msg'=>'id tipo de produto não existe '];
+            }
+            TipoProduto::destroy($id);
+            return ['msg'=>'setor '.$tipoProduto->nome.' excluida'];
+        }catch(\Exception $e){    
+            return ['msg'=>'Não foi possível excluir tipo de produto '];
+        }
     }
 }

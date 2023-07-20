@@ -127,16 +127,5 @@ class FuncionalidadeController extends Controller
             return "Usuario não encontrado";       
         }
     }
-    public function desativa(string $id)
-    {
-        // try{
-            $funcionalidade = Funcionalidade::findOrFail($id);
-            $ativo = ['funcionalidade_ativo'=>0];
-            $funcionalidade->update($ativo);
-            return ['msg'=>'funcionalidade desativada'];
-        // }catch (\Exception $e) {
-        //     return "funcionalidade não encontrada";       
-        // }   
-    }
     
 }

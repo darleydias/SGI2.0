@@ -65,20 +65,7 @@ class ClienteController extends Controller
         }   
     }
 
-    public function desativa(string $id)
-    {
-        try{
-            $cliente = Cliente::findOrFail($id);
-            $ativo = ['cliente_ativo'=>0];
-            $cliente->update($ativo);
-            return ['msg'=>'cliente atualizado'];
-        }catch (\Exception $e) {
-            return "cliente não encontrado";       
-        }   
-    }
-    /**
-     * Remove the specified resource from storage.
-     */
+  
     public function destroy(string $id)
     {
         $result = Cliente::destroy($id);

@@ -16,6 +16,7 @@ return new class extends Migration
             $table->integer('funcionalidade_id')->unsigned();
             $table->integer('grupo_id')->unsigned();
             $table->timestamps();
+            
 
             $table->foreign('grupo_id')->references('id')->on('grupo');
             $table->foreign('funcionalidade_id')->references('id')->on('funcionalidade');

@@ -16,6 +16,7 @@ return new class extends Migration
             $table->biginteger('user_id')->default(20)->unsigned();
             $table->integer('grupo_id')->unsigned();
             $table->timestamps();
+            
 
             $table->foreign('grupo_id')->references('id')->on('grupo');
             $table->foreign('user_id')->references('id')->on('users');
