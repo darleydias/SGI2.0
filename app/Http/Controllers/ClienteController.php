@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Cliente;
 use App\Models\Seguimento;
+use App\Http\Requests\ClienteRequest;
 
 class ClienteController extends Controller
 {
@@ -25,18 +26,14 @@ class ClienteController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(ClienteRequest $request)
     {
-         try{
             try{
                 $segui = Seguimento::findOrFail($request->seguimento_id);
             }catch (\Exception $e) {
                 return "Seguimento não exite";       
             }  
-            return Cliente::create($request->all()); 
-        }catch (\Exception $e) {
-            return "Dados não informados";       
-        }  
+            return Cliente::create($request->all());
     }
 
     /**
@@ -64,8 +61,6 @@ class ClienteController extends Controller
             return "cliente não encontrado";       
         }   
     }
-
-  
     public function destroy(string $id)
     {
         $result = Cliente::destroy($id);

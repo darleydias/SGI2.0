@@ -17,7 +17,6 @@ return new class extends Migration
             $table->string('URL', 100);
             $table->integer('menu');
             $table->integer('sistema_id')->unsigned();
-            $table->integer('funcionalidade_ativo')->default(1);
             $table->timestamps();
             $table->softDeletes();
 

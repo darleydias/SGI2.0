@@ -18,6 +18,7 @@ return new class extends Migration
             $table->timestamp('tempoInicio')->nullable();
             $table->timestamp('tempoFim')->nullable();
             $table->integer('trabalhoPausa');
+            $table->softDeletes();
             $table->timestamps();
 
             $table->foreign('id_servico')->references('id')->on('servico');

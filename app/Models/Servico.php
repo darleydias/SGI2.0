@@ -10,7 +10,8 @@ class Servico extends Model
 {
     use HasFactory;
     protected $table="servico";
-    protected $fillabble=['nome','dtInicio','dtFim'];
+    protected $guarded = [];  
+    // protected $fillabble=['id_setor','id_tipoServico','id_responsavel','dtInicio','dtFim'];
     use SoftDeletes;
     protected $dates = ['deleted_at'];
     public function trabalhos(){

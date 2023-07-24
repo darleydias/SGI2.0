@@ -9,13 +9,15 @@ use App\Http\Controllers\PermissaoController;
 use App\Http\Controllers\AuthController;
 use App\Http\Middleware\PermissaoMiddleware;
 use App\Http\Controllers\SetorController;
+use App\Http\Controllers\ServicoController;
 use App\Http\Controllers\SeguimentoController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\PessoaController;
 use App\Http\Controllers\TipoProdutoController;
+use App\Http\Controllers\TrabalhoController;
 use App\Http\Controllers\ProdutoController;
 use App\Http\Controllers\ProducaoController;
-
+use App\Http\Controllers\TipoServicoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -147,19 +149,19 @@ Route::delete('/pessoa/{id}',[PessoaController::class,'destroy']);
 
 // ################### servico  #######################
 
-Route::get('/servico',[AuthController::class,'index']);
-Route::post('/servico',[AuthController::class,'store']);
-Route::get('/servico/{id}',[AuthController::class,'show']);
-Route::put('/servico/{id}',[AuthController::class,'update']);
-Route::delete('/servico/{id}',[AuthController::class,'destroy']);
+Route::get('/servico',[ServicoController::class,'index']);
+Route::post('/servico',[ServicoController::class,'store']);
+Route::get('/servico/{id}',[ServicoController::class,'show']);
+Route::put('/servico/{id}',[ServicoController::class,'update']);
+Route::delete('/servico/{id}',[ServicoController::class,'destroy']);
 
 // ################### trabalho  #######################
 
-Route::get('/trabalho',[AuthController::class,'index']);
-Route::post('/trabalho',[AuthController::class,'store']);
-Route::get('/trabalho/{id}',[AuthController::class,'show']);
-Route::put('/trabalho/{id}',[AuthController::class,'update']);
-Route::delete('/trabalho/{id}',[AuthController::class,'destroy']);
+Route::get('/trabalho',[TrabalhoController::class,'index']);
+Route::post('/trabalho',[TrabalhoController::class,'store']);
+Route::get('/trabalho/{id}',[TrabalhoController::class,'show']);
+Route::put('/trabalho/{id}',[TrabalhoController::class,'update']);
+Route::delete('/trabalho/{id}',[TrabalhoController::class,'destroy']);
 
 // ################### tipoProduto  #######################
 
@@ -168,6 +170,15 @@ Route::post('/tipoProduto',[TipoProdutoController::class,'store']);
 Route::get('/tipoProduto/{id}',[TipoProdutoController::class,'show']);
 Route::put('/tipoProduto/{id}',[TipoProdutoController::class,'update']);
 Route::delete('/trabtipoProdutoalho/{id}',[TipoProdutoController::class,'destroy']);
+
+// ################### tipoProduto  #######################
+
+Route::get('/tipoServico',[TipoServicoController::class,'index']);
+Route::post('/tipoServico',[TipoServicoController::class,'store']);
+Route::get('/tipoServico/{id}',[TipoServicoController::class,'show']);
+Route::put('/tipoServico/{id}',[TipoServicoController::class,'update']);
+Route::delete('/tipoServico/{id}',[TipoServicoController::class,'destroy']);
+
 
 
 

@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Funcionalidade;
 use App\Models\Grupo;
 use App\Models\User;
+use App\Models\Sistema;
+use App\Http\Requests\FuncionalidadeRequest;
 
 class FuncionalidadeController extends Controller
 {
@@ -20,8 +22,13 @@ class FuncionalidadeController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
-    {
+    public function store(FuncionalidadeRequest $request)
+    {   
+        try{
+            $sistema = Sistema::findOrFail($request->sistema_id);
+        }catch(\Exception $e){
+            return ['msg'=>'id do sistema informado não exite'];
+        }
         return Funcionalidade::create($request->all());
     }
 
@@ -36,12 +43,21 @@ class FuncionalidadeController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(FuncionalidadeRequest $request, string $id)
     {
-        $func =  Funcionalidade::findOrFail($id);
+        try{
+            $func =  Funcionalidade::findOrFail($id);
+        }catch(\Exception $e){
+            return ['msg'=>'funcionalidade não exite'];
+        }
+        try{
+            $sistema = Sistema::findOrFail($request->sistema_id);
+        }catch(\Exception $e){
+            return ['msg'=>'id do sistema informado não exite'];
+        }
+
         $func->update($request->all());
         return $func;
-    
     }
 
     /**
