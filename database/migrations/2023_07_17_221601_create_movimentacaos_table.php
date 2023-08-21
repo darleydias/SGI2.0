@@ -11,11 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tipo_servico', function (Blueprint $table) {
+        Schema::create('movimentacao', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nome', 100);
-            $table->softDeletes();
+            $table->integer('quant')->nullable();
+            $table->integer('id_produto')->unsigned();
             $table->timestamps();
+            $table->foreign('id_produto')->references('id')->on('produto');
         });
     }
 
@@ -24,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tipo_servico');
+        Schema::dropIfExists('movimentacao');
     }
 };

@@ -18,6 +18,7 @@ use App\Http\Controllers\TrabalhoController;
 use App\Http\Controllers\ProdutoController;
 use App\Http\Controllers\ProducaoController;
 use App\Http\Controllers\TipoServicoController;
+use App\Http\Controllers\MovimentacaoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,6 +40,10 @@ Route::get('/sistema/{id}',[SistemaController::class,'show']);
 Route::put('/sistema/{id}',[SistemaController::class,'update']);
 Route::delete('/sistema/{id}',[SistemaController::class,'destroy']);
 Route::get('/sistema/{id}/funcionalidades',[SistemaController::class,'listaFuncSistema']);
+
+//  ##################    MOVIMENTACAO    ##################
+Route::get('/movimentacao',[MovimentacaoController::class,'index']);
+Route::post('/movimentacao',[MovimentacaoController::class,'store']);
 
 //  ##################    GRUPOS    ##################
 Route::get('/grupo',[GrupoController::class,'index']);
