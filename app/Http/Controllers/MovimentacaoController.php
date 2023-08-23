@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Movimentacao;
+use Illuminate\Support\Facades\Log;
 
 class MovimentacaoController extends Controller
 {
@@ -12,7 +13,9 @@ class MovimentacaoController extends Controller
      */
     public function index()
     {
+        Log::warning('Usuário acessando todas as movimentaçoes');
         return Movimentacao::all();
+        
     }
 
     /**
@@ -22,11 +25,13 @@ class MovimentacaoController extends Controller
     {
         // $request->id_produto;
         //  return Movimentacao::create($request->all());
-        $quant = ($request->quant/2);
+        $quant = ($request->quant/2 );
         $result =[
             'quant'=>$quant,
             'id_produto'=>$request->id_produto
         ];
+        Log::info('Movimentação atualizada');
+        Log::channel('slack')->info('Something happened!');
         return Movimentacao::create($result);
     }
 
